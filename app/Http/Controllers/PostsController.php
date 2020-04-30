@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use DB;
 use App\Post;
 
-class PostsController
+class PostsController extends Controller
 {
-    public function show($slug) {
+    public function show($slug)
+    {
 
         // DB is a global Class - without use DB;
         // $post = \DB::table('posts')->where('slug', $slug)->first();
@@ -18,7 +19,7 @@ class PostsController
         // Using use App\Post;
         $post = Post::where('slug', $slug)->firstOrFail();
 
-        if (! $post) {
+        if (!$post) {
             abort(404, "Sorry, that post was not found!!");
         }
 

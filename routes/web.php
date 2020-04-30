@@ -2,6 +2,8 @@
 
 
 use App\Article;
+use App\Http\Controllers\ArticlesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,59 +20,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Give the plain json content as an array or a html or anything without a view component
-Route::get('/welcome', function () {
-    return ['foo', 'road'];
-});
-
-
-// Render the view component with data from the request
-// Example request be like "http://intro-to-laravel.test/test?name=navin-navi&script=%3Cscript%3Ealert(XSS)%3C/script%3E"
-Route::get('test', function () {
-    return view('test', [
-        'name' => request('name'),
-        'script' => request("script")
+Route::get('/articles', function () {
+    return view('articles.index', [
+        'articles' => App\Article::latest()->get()
     ]);
 });
 
-// Blade Templating Tutorial
-Route::get('simplework', function () {
-    return view('simpleWorkHome');
-});
-
-Route::get('simplework/home', function () {
-    return view('simpleWorkHome');
-});
-
-Route::get('simplework/about', function () {
-    return view('simpleWorkAbout',[
-        'articles' => Article::take(3)->latest()->get()
-    ]);
-});
-
-Route::get('simplework/articles', 'ArticlesController@page');
-
-Route::get('simplework/articles/{id}', 'ArticlesController@show');
-
-// Router with wildcard
-
-// Route::get('posts/{post}', function ($post) {
-//     $posts = [
-//         'my-first-post' => "Hello, this is my first blog post!",
-//         'my-second-post' => 'Now I am getting hang of this blogging thing!'
-//     ];
-
-//     if (! array_key_exists($post, $posts)) {
-//         abort(404, "Sorry, that post was not found!!");
-//     }
-
-//     return view('post', ['post' => $posts[$post] ?? "Nothing here yet!!"]);
-// });
-
-// Router with Controller
-
-// Router Manually Created
-Route::get('posts/{post}', 'PostsController@show');
-
-// Router Generated Automatically with php artisan
-// Route::get('posts/{post}', 'GeneratorPostsController@show');
+Route::get('/articles', 'ArticlesController@index')->name('articles.index');;
+Route::post('/articles', 'ArticlesController@store');
+Route::get('/articles/create', 'ArticlesController@create');
+Route::get('/articles/{article}', 'ArticlesController@show')->name('articles.show');
+Route::get('/articles/{article}/edit', 'ArticlesController@edit');
+Route::put('/articles/{article}', 'ArticlesController@update');

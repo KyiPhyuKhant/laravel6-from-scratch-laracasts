@@ -3,20 +3,32 @@
 @section('content')
 <div id="wrapper">
     <div id="page" class="container">
+
+        @forelse ($articles as $article)
         <div id="content">
             <div class="title">
-                <h4>{{ $article->title}}</h4>
+                <h4>
+                    <a href="{{ $article->path() }}">
+                        {{ $article->title}}
+                    </a>
+                </h4>
             </div>
             <p>
                 <img src="/images/banner.jpg" alt="" class="image image-full" />
             </p>
+
             {!! $article->body !!}
-            <p style="margin-top:1em;">
+
+            <!-- <p>
                 @foreach ($article->tags as $tag)
-                <a href="{{ route('articles.index', ['tag' => $tag->name]) }}">{{ $tag->name }}</a>
+                <a href="#">{{ $tag->name }}</a>
                 @endforeach
-            </p>
+            </p> -->
         </div>
+        @empty
+        <p>No revelant articles yet.</p>
+        @endforelse
+
     </div>
 </div>
 @endsection

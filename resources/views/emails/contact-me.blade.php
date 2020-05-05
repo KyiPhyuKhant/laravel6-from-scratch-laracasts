@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+@component('mail::message')
+# A Heading
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
 
-<body>
-    <h1>It work Again</h1>
+- A list
+- goes
+- here
 
-    <p>It sounds like {{ $topic }}.</p>
-</body>
+Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
 
-</html>
+@component('mail::button', ['url' => 'https://laracasts.com'])
+Visit Laracasts
+@endcomponent
+@endcomponent

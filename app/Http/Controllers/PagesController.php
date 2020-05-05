@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Example;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
-    public function home()
+    public function home(Example $example)
     {
-        return view('welcome');
+        ddd(resolve('App\Example'), resolve('App\Example'));
     }
 }

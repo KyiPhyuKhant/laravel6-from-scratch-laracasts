@@ -1,20 +1,8 @@
 <?php
 
-Route::get('/', function () {
-
-    $container = new \App\Container();
-    $container->bind('example', function () {
-        return new \App\Example();
-    });
-
-    $example = $container->resolve('example');
-
-    $example->go();
-});
-
-
 // use App\Article;
 // use App\Http\Controllers\ArticlesController;
+
 
 // // Default render the view
 // Route::get('/', function () {
@@ -39,3 +27,35 @@ Route::get('/', function () {
 // //contact mail
 // Route::get('/contact', 'ContactController@show');
 // Route::post('/contact', 'ContactController@store');
+
+//ep38 Service Container Fundamentals
+// Route::get('/', function () {
+
+//     $container = new \App\Container();
+//     $container->bind('example', function () {
+//         return new \App\Example();
+//     });
+
+//     $example = $container->resolve('example');
+
+//     $example->go();
+// });
+
+
+// Automatically Resolve Dependencies-EPISODE 39
+// app()->bind('App\Example', function () {
+//     // $foo = config('services.foo');
+//     $collaborator = new \App\Collaborator();
+//     $foo = 'foobar';
+
+//     return new \App\Example($collaborator, $foo);
+// });
+
+// Route::get('/', function (App\Example $example) {
+//     // $example = resolve(App\Example::class);
+
+//     ddd($example);
+// });
+
+
+Route::get('/', 'PagesController@home');

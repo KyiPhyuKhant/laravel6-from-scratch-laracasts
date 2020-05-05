@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMe;
 use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
@@ -15,10 +16,8 @@ class ContactController extends Controller
     {
         request()->validate(['email' => 'required|email']);
         //send the email
-        Mail::raw('It works!', function ($message) {
-            $message->to(request('email'))
-                ->subject('Hello There');
-        });
+        Mail::to(request('email'))
+            ->send(new ContactMe('shirts'));
 
         return redirect('/contact')
             ->with('message', 'Email Sent!');

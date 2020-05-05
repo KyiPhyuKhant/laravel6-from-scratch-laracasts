@@ -25,8 +25,8 @@
 // Route::put('/articles/{article}', 'ArticlesController@update');
 
 // //contact mail
-// Route::get('/contact', 'ContactController@show');
-// Route::post('/contact', 'ContactController@store');
+Route::get('/contact', 'ContactController@show');
+Route::post('/contact', 'ContactController@store');
 
 //ep38 Service Container Fundamentals
 // Route::get('/', function () {
@@ -58,4 +58,4 @@
 // });
 
 
-Route::get('/', 'PagesController@home');
+// Route::get('/', 'PagesController@home');

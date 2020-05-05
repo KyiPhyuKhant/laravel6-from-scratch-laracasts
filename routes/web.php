@@ -2,14 +2,14 @@
 
 Route::get('/', function () {
 
-    // $container = new \App\Container();
-    // $container->bind('example', function () {
-    //     return new \App\Example();
-    // });
+    $container = new \App\Container();
+    $container->bind('example', function () {
+        return new \App\Example();
+    });
 
-    // $example = $container->resolve('example');
+    $example = $container->resolve('example');
 
-    // $example->go();
+    $example->go();
 });
 
 

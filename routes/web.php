@@ -62,7 +62,8 @@ Route::post('/contact', 'ContactController@store');
 
 Route::view('/', 'welcome');
 
-
+Route::get('payments/create', 'PaymentsController@create')->middleware('auth');
+Route::post('payments', 'PaymentsController@store')->middleware('auth');
 
 Auth::routes();
 

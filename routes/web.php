@@ -1,7 +1,7 @@
 <?php
 
-// use App\Article;
-// use App\Http\Controllers\ArticlesController;
+use App\Article;
+use App\Http\Controllers\ArticlesController;
 
 
 // // Default render the view
@@ -9,20 +9,20 @@
 //     return view('welcome');
 // });
 
-// // Route::get('/', 'PagesController@home');
+// Route::get('/', 'PagesController@home');
 
-// Route::get('/articles', function () {
-//     return view('articles.index', [
-//         'articles' => App\Article::latest()->get()
-//     ]);
-// });
+Route::get('/articles', function () {
+    return view('articles.index', [
+        'articles' => App\Article::latest()->get()
+    ]);
+});
 
-// Route::get('/articles', 'ArticlesController@index')->name('articles.index');;
-// Route::post('/articles', 'ArticlesController@store');
-// Route::get('/articles/create', 'ArticlesController@create');
-// Route::get('/articles/{article}', 'ArticlesController@show')->name('articles.show');
-// Route::get('/articles/{article}/edit', 'ArticlesController@edit');
-// Route::put('/articles/{article}', 'ArticlesController@update');
+Route::get('/articles', 'ArticlesController@index')->name('articles.index');
+Route::post('/articles', 'ArticlesController@store');
+Route::get('/articles/create', 'ArticlesController@create');
+Route::get('/articles/{article}', 'ArticlesController@show')->name('articles.show');
+Route::get('/articles/{article}/edit', 'ArticlesController@edit');
+Route::put('/articles/{article}', 'ArticlesController@update');
 
 // //contact mail
 Route::get('/contact', 'ContactController@show');
@@ -64,8 +64,7 @@ Route::view('/', 'welcome');
 
 Route::get('payments/create', 'PaymentsController@create')->middleware('auth');
 Route::post('payments', 'PaymentsController@store')->middleware('auth');
-
-Auth::routes();
+Route::get('notifications', 'UserNotificationsController@show')->middleware('auth');
 
 Auth::routes();
 

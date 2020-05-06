@@ -7,6 +7,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
+use Illuminate\Notifications\Messages\Nexmomessage;
+
 class PaymentReceived extends Notification
 {
     use Queueable;
@@ -30,7 +32,7 @@ class PaymentReceived extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail', 'database', 'nexmo'];
     }
 
     /**
@@ -48,6 +50,18 @@ class PaymentReceived extends Notification
             ->line('Loream ipsum dolor sit amet, consectetur adipiscing elit.')
             ->action('Sign Up', url('/'))
             ->line('Thanks!');
+    }
+
+    /**
+     * Get the Nexmo / SMS representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return NexmoMessage
+     */
+    public function toNexmo($notifiable)
+    {
+        return (new Nexmomessage())
+            ->content('Your SMS message content');
     }
 
     /**
